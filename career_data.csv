@@ -1,0 +1,51 @@
+User_ID,Native_Language,Current_Skill_Level,Daily_Study_Hrs,Target_Role,Target_Salary,Learning_Speed,Feasibility_Score,Burnout_Risk,ROI_Category,Outcome_Status
+1,Hindi,25,8,Data Scientist,95000,Turbo,88.5,High,High,Succeeded
+2,Spanish,45,4,UX Designer,75000,Steady,72.0,Low,Optimal,Succeeded
+3,English,10,12,Cloud Architect,120000,Turbo,65.0,Critical,High,Dropped_Out
+4,French,60,2,Project Manager,85000,Deep,75.0,Low,Balanced,Succeeded
+5,German,30,5,Web Developer,65000,Steady,62.5,Moderate,Optimal,Succeeded
+6,Hindi,15,3,Cybersecurity,90000,Deep,42.0,Low,Balanced,In_Progress
+7,English,80,1,AI Engineer,150000,Turbo,92.0,Low,High,Succeeded
+8,Spanish,20,10,Fullstack Dev,80000,Turbo,85.0,Critical,High,Burned_Out
+9,French,50,4,Data Analyst,70000,Steady,78.0,Low,Optimal,Succeeded
+10,English,35,6,Marketing Automation,60000,Deep,65.0,Moderate,Balanced,Succeeded
+11,Hindi,5,9,DevOps,110000,Turbo,70.5,High,High,Succeeded
+12,German,70,2,IT Auditor,95000,Steady,85.0,Low,Optimal,Succeeded
+13,Spanish,40,7,Mobile Dev,85000,Turbo,80.0,Moderate,High,Succeeded
+14,English,15,2,QA Tester,55000,Deep,35.0,Low,Balanced,Dropped_Out
+15,French,25,5,Salesforce Admin,75000,Steady,62.0,Low,Optimal,Succeeded
+16,Hindi,55,3,Network Engineer,80000,Deep,70.5,Low,Balanced,Succeeded
+17,English,10,8,Blockchain Dev,130000,Turbo,68.0,High,High,Dropped_Out
+18,Spanish,65,4,Product Owner,105000,Steady,88.0,Low,Optimal,Succeeded
+19,German,20,6,Game Developer,70000,Turbo,55.0,Moderate,Balanced,In_Progress
+20,French,45,5,Solutions Architect,115000,Turbo,82.0,Moderate,High,Succeeded
+21,Hindi,30,4,Machine Learning,100000,Deep,65.0,Low,Balanced,Succeeded
+22,English,50,2,Technical Writer,65000,Steady,68.0,Low,Balanced,Succeeded
+23,Spanish,15,12,AI Researcher,140000,Turbo,75.0,Critical,High,Burned_Out
+24,German,85,1,CTO,200000,Deep,95.0,Low,High,Succeeded
+25,French,10,4,Support Engineer,50000,Steady,40.0,Low,Balanced,Succeeded
+26,Hindi,40,6,Big Data Eng,110000,Turbo,78.0,Moderate,High,Succeeded
+27,English,20,3,Digital Nomad,45000,Deep,48.0,Low,Balanced,Succeeded
+28,Spanish,55,5,Database Admin,85000,Steady,82.5,Low,Optimal,Succeeded
+29,German,30,8,Frontend Lead,95000,Turbo,80.0,High,High,Succeeded
+30,French,60,2,Scrum Master,90000,Deep,85.0,Low,Optimal,Succeeded
+31,Hindi,12,7,Cloud Security,105000,Turbo,62.0,Moderate,High,Succeeded
+32,English,45,4,Business Analyst,78000,Steady,75.0,Low,Optimal,Succeeded
+33,Spanish,25,6,UI Designer,60000,Deep,58.0,Moderate,Balanced,Succeeded
+34,German,5,10,Systems Eng,95000,Turbo,72.5,Critical,High,Dropped_Out
+35,French,75,3,Python Dev,85000,Steady,90.5,Low,Optimal,Succeeded
+36,Hindi,35,5,Power BI Analyst,65000,Deep,68.0,Low,Balanced,Succeeded
+37,English,22,8,AR/VR Designer,90000,Turbo,70.0,High,High,Succeeded
+38,Spanish,50,2,SEO Specialist,55000,Steady,65.0,Low,Balanced,Succeeded
+39,German,15,4,Hardware Eng,80000,Deep,45.0,Low,Balanced,In_Progress
+40,French,40,7,Backend Dev,95000,Turbo,82.0,Moderate,High,Succeeded
+41,Hindi,65,3,ERP Consultant,120000,Steady,88.0,Low,High,Succeeded
+42,English,10,6,Security Analyst,75000,Deep,55.0,Moderate,Balanced,Succeeded
+43,Spanish,30,9,Fullstack Eng,90000,Turbo,85.0,High,High,Succeeded
+44,German,55,2,Agile Coach,100000,Steady,78.0,Low,Optimal,Succeeded
+45,French,20,5,CRM Manager,70000,Deep,58.0,Low,Balanced,Succeeded
+46,Hindi,45,6,DevOps Jr,85000,Turbo,76.0,Moderate,High,Succeeded
+47,English,15,4,Copywriter,50000,Steady,48.0,Low,Balanced,Succeeded
+48,Spanish,70,2,Software Architect,140000,Deep,92.0,Low,High,Succeeded
+49,German,35,7,Embedded Systems,88000,Turbo,78.5,Moderate,High,Succeeded
+50,French,10,2,Admin Assistant,40000,Steady,28.0,Low,Balanced,Dropped_Out

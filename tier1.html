@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Navigator | Tier 1 Suite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06080f;
+            --bg-soft: #0d1117;
+            --card: rgba(13, 17, 23, 0.85);
+            --card-strong: #0a0f1a;
+            --accent: #f59e0b;
+            --accent-2: #22d3ee;
+            --accent-3: #a78bfa;
+            --text: #f1f5f9;
+            --dim: #8b9bb4;
+            --border: rgba(148, 163, 184, 0.1);
+            --border-hover: rgba(34, 211, 238, 0.35);
+            --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+            --radius: 14px;
+            --radius-sm: 10px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 50% 40% at 10% 10%, rgba(34, 211, 238, 0.06), transparent),
+                radial-gradient(ellipse 40% 40% at 90% 20%, rgba(245, 158, 11, 0.06), transparent);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Header / Nav ── */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            background: rgba(6, 8, 15, 0.8);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .top-bar-inner {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+            gap: 16px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 6px 12px;
+            border-radius: 8px;
+        }
+
+        .back-link:hover { color: var(--accent-2); background: rgba(34, 211, 238, 0.06); }
+
+        .top-bar h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header-tag {
+            background: rgba(34, 211, 238, 0.08);
+            color: var(--accent-2);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            white-space: nowrap;
+        }
+
+        /* ── Layout ── */
+        .page-body {
+            padding: 28px 0 60px;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* ── Input Panel ── */
+        .input-panel {
+            background: var(--card-strong);
+            padding: 24px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 80px;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(148, 163, 184, 0.15) transparent;
+        }
+
+        .input-panel::-webkit-scrollbar { width: 5px; }
+        .input-panel::-webkit-scrollbar-track { background: transparent; }
+        .input-panel::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.15); border-radius: 10px; }
+
+        .panel-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-2);
+            margin: 24px 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-title:first-child { margin-top: 0; }
+
+        .panel-title::before {
+            content: "";
+            width: 3px;
+            height: 14px;
+            background: var(--accent-2);
+            border-radius: 4px;
+        }
+
+        .form-group { margin-bottom: 14px; }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.78rem;
+            color: var(--dim);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        select, input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px 14px;
+            background: rgba(6, 8, 15, 0.8);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.88rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--accent-2);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+        }
+
+        select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238b9bb4' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+
+        .run-btn {
+            width: 100%;
+            padding: 14px 16px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #06080f;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .run-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.25);
+        }
+
+        .run-btn:active { transform: translateY(0); }
+
+        .run-btn.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .run-btn.loading::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
+        }
+
+        /* ── Dashboard Results ── */
+        .results-area { min-width: 0; }
+
+        .section-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent-2);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+        }
+
+        .metric, .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(6px);
+        }
+
+        .metric:hover, .card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .val {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            font-family: 'Fraunces', serif;
+        }
+
+        .val.positive { color: #34d399; }
+        .val.warning { color: #fbbf24; }
+        .val.danger { color: #f87171; }
+
+        .lab {
+            font-size: 0.68rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 600;
+        }
+
+        /* ── XAI Console ── */
+        .console {
+            margin-top: 20px;
+            background: rgba(6, 8, 15, 0.9);
+            padding: 22px 24px;
+            border-radius: var(--radius);
+            border-left: 3px solid var(--accent);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+        }
+
+        .console h4 {
+            margin: 0 0 10px;
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .console p {
+            margin: 0;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: #cbd5e1;
+        }
+
+        /* ── Tier Extension Cards ── */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .card .card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .card-icon.cyan { background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.2); }
+        .card-icon.orange { background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.2); }
+        .card-icon.purple { background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.2); }
+        .card-icon.green { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); }
+        .card-icon.yellow { background: rgba(250, 204, 21, 0.1); border: 1px solid rgba(250, 204, 21, 0.2); }
+        .card-icon.pink { background: rgba(244, 114, 182, 0.1); border: 1px solid rgba(244, 114, 182, 0.2); }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 10px 0 0;
+        }
+
+        .pill {
+            background: rgba(34, 211, 238, 0.08);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            color: var(--accent-2);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 500;
+        }
+
+        ul {
+            padding-left: 16px;
+            margin: 8px 0 0;
+            color: #cbd5e1;
+            font-size: 0.88rem;
+        }
+
+        ul li { margin-bottom: 4px; }
+        ul li::marker { color: var(--dim); }
+
+        /* ── Voice Controls ── */
+        .voice-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .voice-controls button {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: rgba(13, 17, 23, 0.8);
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .voice-controls button:hover {
+            border-color: var(--border-hover);
+            background: rgba(34, 211, 238, 0.06);
+        }
+
+        /* ── Voice Only Mode ── */
+        .voice-only {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 8, 15, 0.95);
+            backdrop-filter: blur(20px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            z-index: 200;
+        }
+
+        .voice-only.active { display: flex; }
+
+        .voice-box {
+            background: var(--card-strong);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 560px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .voice-box h2 {
+            font-family: 'Fraunces', serif;
+            margin-bottom: 16px;
+        }
+
+        .voice-box p {
+            color: var(--dim);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .voice-box button {
+            width: auto;
+            padding: 10px 28px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .voice-box button:hover {
+            border-color: var(--border-hover);
+        }
+
+        /* ── Mobile Panel Toggle ── */
+        .panel-toggle {
+            display: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            background: var(--card-strong);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            margin-bottom: 16px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .panel-toggle:hover { border-color: var(--border-hover); }
+
+        /* ── Animations ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate { animation: fadeInUp 0.5s ease both; }
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+
+        /* ── Responsive ── */
+        @media (max-width: 1100px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .input-panel {
+                position: static;
+                max-height: none;
+            }
+
+            .input-panel.collapsed {
+                display: none;
+            }
+
+            .panel-toggle {
+                display: block;
+            }
+
+            .header-tag { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 16px; }
+            .top-bar-inner { padding: 0 16px; }
+
+            .dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tier-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .voice-controls {
+                flex-direction: column;
+            }
+
+            .top-bar h1 { font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .top-bar-inner {
+                height: 52px;
+            }
+
+            .input-panel { padding: 18px; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <nav class="top-bar">
+        <div class="top-bar-inner">
+            <a class="back-link" href="index.html">&larr; Home</a>
+            <h1>Tier 1 Intelligence Suite</h1>
+            <div class="header-tag">&#9889; Local Language Voice</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-body">
+
+            <!-- Mobile Toggle -->
+            <button class="panel-toggle" id="panelToggle" onclick="togglePanel()">
+                &#9881; Show Input Panel
+            </button>
+
+            <div class="main-layout">
+                <!-- Input Panel -->
+                <aside class="input-panel animate" id="inputPanel">
+                    <div class="panel-title">Profile Inputs</div>
+
+                    <div class="form-group">
+                        <label>Local Language</label>
+                        <select id="language">
+                            <option value="en">English</option>
+                            <option value="es">Espa&ntilde;ol</option>
+                            <option value="fr">Fran&ccedil;ais</option>
+                            <option value="de">Deutsch</option>
+                            <option value="hi">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Skills (0-100%)</label>
+                        <input type="number" id="current_skills" value="25" max="100" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Target Role Salary ($)</label>
+                        <input type="number" id="target_salary" value="85000">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Daily Study Hours</label>
+                        <input type="number" id="study_hours" value="4" min="0" max="24">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Learning Speed</label>
+                        <select id="speed">
+                            <option value="1">Standard (Steady)</option>
+                            <option value="1.5">Accelerated (Fast)</option>
+                            <option value="0.7">Balanced (Slow &amp; Deep)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>State</label>
+                        <select id="state">
+                            <option>Kerala</option>
+                            <option>Tamil Nadu</option>
+                            <option>Karnataka</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Location Type</label>
+                        <select id="location_type">
+                            <option value="Urban">Urban</option>
+                            <option value="Semi-Urban">Semi-Urban</option>
+                            <option value="Rural">Rural</option>
+                        </select>
+                    </div>
+
+                    <div class="panel-title">Eligibility &amp; Resume</div>
+
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="age" value="22" min="15" max="60">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Education Level</label>
+                        <select id="education">
+                            <option>High School</option>
+                            <option>Diploma</option>
+                            <option selected>Bachelor</option>
+                            <option>Master</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Projects Completed</label>
+                        <input type="number" id="projects" value="1" min="0" max="20">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Portfolio / LinkedIn</label>
+                        <select id="portfolio">
+                            <option value="false">Not yet</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="panel-title">Career Comparison</div>
+
+                    <div class="form-group">
+                        <label>Career A</label>
+                        <input type="text" id="career_a" value="Data Scientist" list="career_list">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Career B</label>
+                        <input type="text" id="career_b" value="UX Designer" list="career_list">
+                    </div>
+
+                    <datalist id="career_list">
+                        <option value="Data Scientist"></option>
+                        <option value="UX Designer"></option>
+                        <option value="AI Engineer"></option>
+                        <option value="Cloud Architect"></option>
+                        <option value="Product Manager"></option>
+                        <option value="Fullstack Dev"></option>
+                        <option value="Cybersecurity"></option>
+                    </datalist>
+
+                    <button class="run-btn" id="runBtn" onclick="calculateAI()">
+                        &#9889; RUN NEURAL ANALYSIS
+                    </button>
+                </aside>
+
+                <!-- Results Area -->
+                <main class="results-area">
+                    <div class="section-title animate">Core Intelligence</div>
+                    <div class="dashboard animate animate-delay-1" id="coreDashboard">
+                        <div class="metric">
+                            <span class="lab">Feasibility Score</span>
+                            <span id="res_feasibility" class="val">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="lab">Salary vs Effort</span>
+                            <span id="res_roi" class="val">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="lab">Skill Gap</span>
+                            <span id="res_gap" class="val">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="lab">Burnout Risk</span>
+                            <span id="res_burnout" class="val">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="lab">Dropout Risk</span>
+                            <span id="res_dropout" class="val">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="lab">AI Confidence</span>
+                            <span id="res_conf" class="val">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="lab">Switch Strategy</span>
+                            <span id="res_switch" class="val">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="lab">Learning Adaptation</span>
+                            <span id="res_adapt" class="val">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="lab">Location Score</span>
+                            <span id="res_location_score" class="val">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="lab">Relocation Risk</span>
+                            <span id="res_relocation" class="val">--</span>
+                        </div>
+                    </div>
+
+                    <div class="console animate animate-delay-2">
+                        <h4>&#9670; Native Language Explanation (XAI)</h4>
+                        <p id="xai_output">Input your data and run the analysis to receive personalized guidance in your
+                            local language.</p>
+                    </div>
+
+                    <div class="section-title" style="margin-top: 32px;">Tier 1 Extensions</div>
+                    <div class="tier-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon cyan">&#127758;</div>
+                                <div class="lab">State-Specific Job Insights</div>
+                            </div>
+                            <span id="res_state_outlook" class="val">--</span>
+                            <div class="pill-list" id="res_state_roles"></div>
+                            <div class="pill-list" id="res_state_sectors"></div>
+                            <p id="res_state_salary" class="lab" style="margin-top: 10px;">--</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon orange">&#128220;</div>
+                                <div class="lab">Govt Exam Eligibility</div>
+                            </div>
+                            <span id="res_govt_summary" class="val">--</span>
+                            <ul id="res_govt_list"></ul>
+                            <ul id="res_govt_steps"></ul>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon green">&#128196;</div>
+                                <div class="lab">Resume Readiness</div>
+                            </div>
+                            <span id="res_resume_score" class="val">--</span>
+                            <p id="res_resume_level" class="lab">--</p>
+                            <ul id="res_resume_tips"></ul>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon purple">&#127891;</div>
+                                <div class="lab">Internship Readiness</div>
+                            </div>
+                            <span id="res_intern_score" class="val">--</span>
+                            <p id="res_intern_status" class="lab">--</p>
+                            <ul id="res_intern_tips"></ul>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon yellow">&#9989;</div>
+                                <div class="lab">Micro-Task Daily Goals</div>
+                            </div>
+                            <ul id="res_micro_tasks"></ul>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon pink">&#128188;</div>
+                                <div class="lab">Freelancing Path Builder</div>
+                            </div>
+                            <p class="lab" style="margin-top: 8px;">Starter Services</p>
+                            <ul id="res_freelance_services"></ul>
+                            <p class="lab" style="margin-top: 8px;">Portfolio Ideas</p>
+                            <ul id="res_freelance_portfolio"></ul>
+                            <p class="lab" style="margin-top: 8px;">First Clients</p>
+                            <ul id="res_freelance_clients"></ul>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon cyan">&#128106;</div>
+                                <div class="lab">Parent-View Dashboard</div>
+                            </div>
+                            <span id="res_parent_summary" class="val" style="font-size: 0.95rem;">--</span>
+                            <ul id="res_parent_actions"></ul>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon green">&#127979;</div>
+                                <div class="lab">Teacher / Counsellor Interface</div>
+                            </div>
+                            <p class="lab" style="margin-top: 8px;">Focus Areas</p>
+                            <ul id="res_teacher_focus"></ul>
+                            <p class="lab" style="margin-top: 8px;">Risk Flags</p>
+                            <ul id="res_teacher_risks"></ul>
+                            <p id="res_teacher_guidance" class="lab" style="margin-top: 10px;">--</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon orange">&#127963;</div>
+                                <div class="lab">NGO / Govt Deployment Mode</div>
+                            </div>
+                            <span id="res_ngo_mode" class="val">--</span>
+                            <ul id="res_ngo_resources"></ul>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon purple">&#128200;</div>
+                                <div class="lab">Impact Metrics</div>
+                            </div>
+                            <span id="res_impact_employability" class="val">--</span>
+                            <p id="res_impact_time" class="lab" style="margin-top: 6px;">--</p>
+                            <p id="res_impact_community" class="lab">--</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon yellow">&#128161;</div>
+                                <div class="lab">Career Diversity Recommendations</div>
+                            </div>
+                            <ul id="res_diversity_list"></ul>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon pink">&#9878;</div>
+                                <div class="lab">Career Comparison</div>
+                            </div>
+                            <span id="res_compare_title" class="val" style="font-size: 1rem;">--</span>
+                            <p id="res_compare_salary" class="lab" style="margin-top: 8px;">--</p>
+                            <p id="res_compare_skills" class="lab">--</p>
+                            <p id="res_compare_growth" class="lab">--</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon cyan">&#127908;</div>
+                                <div class="lab">Local Language Voice Assistant</div>
+                            </div>
+                            <p id="voice_output" style="color: var(--dim); font-size: 0.9rem; margin-top: 4px;">--</p>
+                            <div class="voice-controls">
+                                <button id="play_voice">&#9654; Play Guidance</button>
+                                <button id="voice_only_toggle">&#127911; Voice-Only Mode</button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Only Overlay -->
+    <div class="voice-only" id="voice_only">
+        <div class="voice-box">
+            <h2>&#127908; Voice-Only Guidance</h2>
+            <p id="voice_only_text">Run an analysis to generate a voice summary.</p>
+            <button id="voice_only_close">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile panel toggle
+        function togglePanel() {
+            const panel = document.getElementById('inputPanel');
+            const btn = document.getElementById('panelToggle');
+            panel.classList.toggle('collapsed');
+            btn.textContent = panel.classList.contains('collapsed')
+                ? '\u2699 Show Input Panel'
+                : '\u2715 Hide Input Panel';
+        }
+
+        function setList(elementId, items) {
+            const el = document.getElementById(elementId);
+            el.innerHTML = '';
+            if (!items || items.length === 0) {
+                el.innerHTML = '<li style="color:var(--dim)">No data available</li>';
+                return;
+            }
+            items.forEach((item) => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                el.appendChild(li);
+            });
+        }
+
+        function setPills(elementId, items) {
+            const el = document.getElementById(elementId);
+            el.innerHTML = '';
+            if (!items || items.length === 0) return;
+            items.forEach((item) => {
+                const pill = document.createElement('span');
+                pill.className = 'pill';
+                pill.textContent = item;
+                el.appendChild(pill);
+            });
+        }
+
+        function colorizeValue(el, value) {
+            el.classList.remove('positive', 'warning', 'danger');
+            const text = String(value).toLowerCase();
+            if (text.includes('high') || text.includes('critical') || text.includes('danger')) {
+                el.classList.add('danger');
+            } else if (text.includes('medium') || text.includes('almost') || text.includes('standard')) {
+                el.classList.add('warning');
+            } else if (text.includes('low') || text.includes('optimal') || text.includes('ready') || text.includes('excellent')) {
+                el.classList.add('positive');
+            }
+        }
+
+        function playVoice(text, lang) {
+            if (!('speechSynthesis' in window)) {
+                alert('Voice synthesis not supported in this browser.');
+                return;
+            }
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang || 'en-US';
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(utterance);
+        }
+
+        document.getElementById('voice_only_toggle').addEventListener('click', () => {
+            document.getElementById('voice_only').classList.add('active');
+        });
+
+        document.getElementById('voice_only_close').addEventListener('click', () => {
+            document.getElementById('voice_only').classList.remove('active');
+        });
+
+        // Close voice-only on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('voice_only').classList.remove('active');
+            }
+        });
+
+        async function calculateAI() {
+            const btn = document.getElementById('runBtn');
+            btn.classList.add('loading');
+            btn.textContent = '\u23F3 Analyzing...';
+
+            const skills = document.getElementById('current_skills').value;
+            const hours = document.getElementById('study_hours').value;
+            const salary = document.getElementById('target_salary').value;
+            const lang = document.getElementById('language').value;
+            const state = document.getElementById('state').value;
+            const locationType = document.getElementById('location_type').value;
+            const age = document.getElementById('age').value;
+            const education = document.getElementById('education').value;
+            const projects = document.getElementById('projects').value;
+            const portfolio = document.getElementById('portfolio').value;
+            const careerA = document.getElementById('career_a').value;
+            const careerB = document.getElementById('career_b').value;
+
+            const speedText = document.getElementById('speed').selectedOptions[0].text;
+            let speed = 'Steady';
+            if (speedText.includes('Fast')) speed = 'Turbo';
+            if (speedText.includes('Slow')) speed = 'Deep';
+
+            try {
+                // Auto-detect: use local API if running on localhost, else deployed URL
+                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const API_BASE = isLocal
+                    ? `http://localhost:8000`
+                    : `https://ai-career-navigator-axx6.onrender.com`;
+
+                const response = await fetch(
+                    `${API_BASE}/predict?skills=${skills}&hours=${hours}&salary=${salary}&lang=${lang}&speed=${speed}&state=${state}&location_type=${locationType}&age=${age}&education=${education}&projects=${projects}&portfolio=${portfolio}&career_a=${encodeURIComponent(careerA)}&career_b=${encodeURIComponent(careerB)}`
+                );
+
+                if (!response.ok) throw new Error('Server response was not ok');
+
+                const data = await response.json();
+
+                // Core metrics
+                document.getElementById('res_feasibility').innerText = data.feasibility + '%';
+                document.getElementById('res_roi').innerText = data.roi;
+                document.getElementById('res_gap').innerText = (100 - skills) + '%';
+
+                const burnoutEl = document.getElementById('res_burnout');
+                burnoutEl.innerText = data.burnout;
+                colorizeValue(burnoutEl, data.burnout);
+
+                const dropoutEl = document.getElementById('res_dropout');
+                dropoutEl.innerText = data.dropout;
+                colorizeValue(dropoutEl, data.dropout);
+
+                document.getElementById('res_conf').innerText = data.confidence + '%';
+                document.getElementById('res_switch').innerText = data.status;
+                document.getElementById('res_adapt').innerText = data.adaptation;
+                document.getElementById('res_location_score').innerText = data.location_score + '%';
+
+                const relocEl = document.getElementById('res_relocation');
+                relocEl.innerText = data.relocation_risk;
+                colorizeValue(relocEl, data.relocation_risk);
+
+                document.getElementById('xai_output').innerText = data.explanation;
+
+                // State insights
+                document.getElementById('res_state_outlook').innerText = data.state_insights.outlook;
+                document.getElementById('res_state_salary').innerText = 'Salary Range: ' + data.state_insights.salary_range;
+                setPills('res_state_roles', data.state_insights.roles);
+                setPills('res_state_sectors', data.state_insights.sectors);
+
+                // Govt exams
+                document.getElementById('res_govt_summary').innerText = data.govt_exam.summary;
+                setList('res_govt_list', data.govt_exam.eligible);
+                setList('res_govt_steps', data.govt_exam.next_steps);
+
+                // Resume
+                document.getElementById('res_resume_score').innerText = data.resume_meter.score + '%';
+                document.getElementById('res_resume_level').innerText = 'Level: ' + data.resume_meter.level;
+                setList('res_resume_tips', data.resume_meter.tips);
+
+                // Internship
+                document.getElementById('res_intern_score').innerText = data.internship_meter.score + '%';
+                const internStatus = document.getElementById('res_intern_status');
+                internStatus.innerText = 'Status: ' + data.internship_meter.status;
+                setList('res_intern_tips', data.internship_meter.tips);
+
+                // Micro tasks
+                setList('res_micro_tasks', data.micro_tasks);
+
+                // Freelancing
+                setList('res_freelance_services', data.freelance_builder.starter_services);
+                setList('res_freelance_portfolio', data.freelance_builder.portfolio_ideas);
+                setList('res_freelance_clients', data.freelance_builder.first_clients);
+
+                // Parent view
+                document.getElementById('res_parent_summary').innerText = data.parent_view.summary;
+                setList('res_parent_actions', data.parent_view.support_actions);
+
+                // Counselor
+                setList('res_teacher_focus', data.counselor_view.focus_areas);
+                setList('res_teacher_risks', data.counselor_view.risk_flags);
+                document.getElementById('res_teacher_guidance').innerText = data.counselor_view.guidance;
+
+                // NGO
+                document.getElementById('res_ngo_mode').innerText = data.ngo_mode.mode;
+                setList('res_ngo_resources', data.ngo_mode.resources);
+
+                // Impact
+                document.getElementById('res_impact_employability').innerText = data.impact.employability_boost + '%';
+                document.getElementById('res_impact_time').innerText = 'Est. time to job: ' + data.impact.time_to_job_months + ' months';
+                document.getElementById('res_impact_community').innerText = 'Community impact: ' + data.impact.community_impact + ' learners';
+
+                // Diversity
+                setList('res_diversity_list', data.diversity);
+
+                // Comparison
+                document.getElementById('res_compare_title').innerText = data.comparison.career_a.name + ' vs ' + data.comparison.career_b.name;
+                document.getElementById('res_compare_salary').innerText = 'Salary: ' + data.comparison.comparison.salary;
+                document.getElementById('res_compare_skills').innerText = 'Skill baseline: ' + data.comparison.comparison.skills_focus;
+                document.getElementById('res_compare_growth').innerText = 'Growth lead: ' + data.comparison.comparison.growth;
+
+                // Voice
+                document.getElementById('voice_output').innerText = data.voice_text;
+                document.getElementById('voice_only_text').innerText = data.voice_text;
+
+                const playButton = document.getElementById('play_voice');
+                playButton.onclick = () => playVoice(data.voice_text, data.voice_lang);
+
+                // Scroll to results on mobile
+                if (window.innerWidth < 1100) {
+                    document.getElementById('coreDashboard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+            } catch (error) {
+                console.error('Connection Error:', error);
+                document.getElementById('xai_output').innerText = 'Connection error. Make sure the Python server (brain.py) is running on port 8000 or the deployed API is reachable.';
+            } finally {
+                btn.classList.remove('loading');
+                btn.textContent = '\u26A1 RUN NEURAL ANALYSIS';
+            }
+        }
+    </script>
+</body>
+
+</html>
